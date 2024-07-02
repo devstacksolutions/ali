@@ -1,0 +1,72 @@
+<!-- Gift product add thru api  -->
+    {% assign gift_product_handle = block.settings.giftproduct.handle %}
+            {% assign gift_product = all_products[gift_product_handle] %}
+    <script>
+      async function giftProduct(id) {
+        let formData = {
+          items: [
+            {
+              id: +id,
+              quantity: 1
+            }
+          ]
+        };
+
+        console.log('chikichiki',window.Shopify.routes.root + 'cart/add.js')
+
+        try {
+          const response = await fetch(window.Shopify.routes.root + 'cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          });
+
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          const data = await response.json();
+
+         fetch(window.location.href + '#CartDrawer')
+        .then(response => {
+          // Check if the request was successful (status code 200-299)
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          
+          // Parse the JSON in the response
+           // response.json() also use json but agr ap sure hai k data json form ana tb use kr skty
+          // aik time text() and json() dono use nhi kr skty
+          // text() return string and json() return javascript object
+          return response.text();   
+        })
+        .then(data => {
+            let div = document.createElement('div')
+            div.innerHTML = data 
+          let updatedDrawer = div.querySelector('#CartDrawer')
+          let updatedBubble = div.querySelector('#cart-icon-bubble')
+
+          console.log('drawer',updatedDrawer)
+          console.log('bubs',updatedBubble)
+          
+        document.getElementById('CartDrawer').innerHTML = updatedDrawer.innerHTML;
+        document.getElementById('cart-icon-bubble').innerHTML = updatedBubble.innerHTML; 
+        })
+        .catch(error => {
+          // Handle errors
+          console.error('Fetch error:', error);
+        });
+
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+
+      document.querySelector('.product-form__submit').addEventListener('click',(e)=>{
+        setTimeout(()=>{
+          giftProduct('{{ gift_product.selected_or_first_available_variant.id }}')
+        },1000)
+      })
+</script>

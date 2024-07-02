@@ -1,0 +1,115 @@
+<style type="text/css">
+#container {
+    overflow: hidden;
+  background: #fff;
+  border: 1px solid;
+}
+
+#moving-heading {
+    white-space: nowrap; /* Prevent heading from wrapping to the next line */
+    display: inline; /* Make the heading an inline element */
+}
+
+</style>
+ <div id="container">
+        <div id="moving-heading-container">
+            <div id="moving-heading">
+              <p>Infinity Loop1</p>
+             
+            </div>
+          
+        </div>
+    </div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById('container');
+        const headingContainer = document.getElementById('moving-heading-container');
+        const heading = document.getElementById('moving-heading');
+        let position = 0; // Initial position
+        let intervalId = null; // Interval ID to hold the reference
+      let speed = {{section.settings.speed}}
+
+        function moveHeading() {
+            const containerWidth = container.offsetWidth;
+            const headingWidth = heading.offsetWidth;
+
+            // Adjust position based on schema setting
+            const schemaPosition = '{{ section.settings.position }}';
+            if (schemaPosition === 'leftToRight') {
+                position++;
+                if (position > containerWidth) {
+                    position = -headingWidth;
+                }
+            } else if (schemaPosition === 'rightToLeft') {
+                position--;
+                if (position < -headingWidth) {
+                    position = containerWidth;
+                }
+            }
+
+            headingContainer.style.transform = `translateX(${position}px)`;
+        }
+
+        // Start moving the text
+        intervalId = setInterval(moveHeading, speed);
+
+        // Pause moving text on mouseenter
+        container.addEventListener('mouseenter', function() {
+            clearInterval(intervalId);
+        });
+
+        // Resume moving text on mouseleave
+        container.addEventListener('mouseleave', function() {
+            intervalId = setInterval(moveHeading, speed);
+        });
+    });
+</script>
+
+
+{% schema %}
+{
+  "name": "Horizontal Moving Text",
+  "settings": [
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "leftToRight",
+          "label": "Left to Right"
+        },
+        {
+          "value": "rightToLeft",
+          "label": "Right to Left"
+        }
+      ],
+      "default": "leftToRight"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "ms",
+      "label": "Speed Control",
+      "default": 20,
+      "info": "Set Speed In Milliseconds"
+      }
+  ],
+  "presets": [
+    {
+      "name": "Horizontal Moving Text"
+    }
+  ]
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,13 @@
+{%- if product.handle != blank -%}
+  <div class="he-product-wishlist heRight">
+    <button type="button" aria-label="Add to wishlist" class="wishlist-hxn hide-list" button-wishlist data-product-handle="{{ product.handle }}"> 
+      <div class="wish-list-sec">
+        <span class="wishlist-icon">
+  {% render 'wishlist-icon' %}</span>
+        <span class="wishlist-text"></span>
+      </div>
+    </button>
+  </div>  
+{%- endif -%}
+
+

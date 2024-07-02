@@ -1,0 +1,83 @@
+{
+  "sections": {
+    "custom_feature_collection_slider_WRz9mQ": {
+      "type": "custom-feature-collection-slider",
+      "disabled": true,
+      "settings": {
+        "collection_main": "full-dress",
+        "bg": "",
+        "title": "Featured Collection Slider"
+      }
+    },
+    "custom_collection_list_slider_48CF6k": {
+      "type": "custom-collection-list-slider",
+      "blocks": {
+        "collectionlist_Ef6VLT": {
+          "type": "collectionlist",
+          "settings": {
+            "collection": "full-dress"
+          }
+        },
+        "collectionlist_nyzqaK": {
+          "type": "collectionlist",
+          "settings": {
+            "collection": "full-dress"
+          }
+        },
+        "collectionlist_GDYWqf": {
+          "type": "collectionlist",
+          "settings": {
+            "collection": "full-dress"
+          }
+        },
+        "collectionlist_PNQWbk": {
+          "type": "collectionlist",
+          "settings": {
+            "collection": "full-dress"
+          }
+        },
+        "collectionlist_edLEhx": {
+          "type": "collectionlist",
+          "settings": {
+            "collection": "full-dress"
+          }
+        },
+        "collectionlist_gYaAtP": {
+          "type": "collectionlist",
+          "settings": {
+            "collection": "full-dress"
+          }
+        }
+      },
+      "block_order": [
+        "collectionlist_Ef6VLT",
+        "collectionlist_nyzqaK",
+        "collectionlist_GDYWqf",
+        "collectionlist_PNQWbk",
+        "collectionlist_edLEhx",
+        "collectionlist_gYaAtP"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Featured Collection Slider"
+      }
+    },
+    "custom_double_banner_image_Qy6z76": {
+      "type": "custom-double-banner-image",
+      "disabled": true,
+      "settings": {
+        "imag1": "shopify:\/\/shop_images\/Aston_Natural_with_a_Polywood_Top_Daytime_01_952x952_8da90bb6-216a-4c61-8cab-2d1f8f57ea88.webp",
+        "image2": "shopify:\/\/shop_images\/aston-rattan-corner-sofa-set-9-seater-grey-laura-james-1_952x952_143ec576-fb05-4570-97be-5376a7eae54e.webp",
+        "heading": "Introducing",
+        "sub-heading": "The Aston Collection",
+        "btn": "Shop Aston",
+        "url": "#"
+      }
+    }
+  },
+  "order": [
+    "custom_feature_collection_slider_WRz9mQ",
+    "custom_collection_list_slider_48CF6k",
+    "custom_double_banner_image_Qy6z76"
+  ]
+}

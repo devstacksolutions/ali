@@ -1,0 +1,25 @@
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<div class="wishlist-content-main container">
+    <div class="collection-hero__text-wrapper">
+    <div class="horizontal-line"></div>
+    <h1 class="collection-hero__title">WIshlist</h1>
+    </div>
+</div>
+<div class="wishlist__grid flex container" grid-wishlist>
+  {% comment %} Sample loading element {% endcomment %}
+  <center>
+    <p class="wishlist__loader full-width text-center"></p>
+  </center>
+</div>
+
+{% schema %}
+  {
+"name":"Wishlist Template",
+"settings":[],
+"presets":[
+{
+"name":"Wishlist Template"
+}
+]
+}
+{% endschema %}

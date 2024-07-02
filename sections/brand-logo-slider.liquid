@@ -1,0 +1,118 @@
+<style>
+ .brand-logo-section-main{
+   margin-top: 20px;
+   padding: 0 15px;
+ } 
+ .data-container img{
+    width: 60px;
+  }
+.data-container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    text-align: center;
+    cursor: grab;
+}
+.data-container p{
+  margin: 0;
+  padding-top: 4px;
+}
+.data-container > a{
+  text-decoration: none;
+  font-size: 11px;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.brand-logo-section-main .parent .splide__arrow{
+    background: transparent;
+}
+.brand-logo-section-main  .splide__arrow--prev{
+   left: 0; 
+}
+.brand-logo-section-main  .splide__arrow--next{
+  right: 0;
+}
+@media(max-width: 767px){
+  .brand-logo-section-main .splide__arrow svg{
+    width: 10px;
+    height: auto;
+  }
+  .data-container > a{
+  font-size: 10px;
+  }
+}  
+</style>
+<section class="splide parent">
+  <div class="splide__track">
+    <div class="splide__list">
+      {% for block in section.blocks %}
+        <div class="splide__slide data-container">
+          <a href="{{ block.settings.url }}">
+          <img src="{{ block.settings.image | img_url : "master" }}">
+          <p>{{ block.settings.title }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script>
+    var splide = new Splide( '.splide', {
+    pagination: boolean = false,
+    perPage: 11,
+    perMove: 1,
+    padding: { left: 30, right: 30 },
+    gap: '',  
+    
+    breakpoints: {
+
+      1200: {
+        perPage: 7,
+         padding: { left: 0, right: 0 },
+      },
+       768: {
+        perPage: 4,
+         padding: { left: 0, right: 0 },
+      }
+}
+       
+      
+  } );
+  splide.mount();
+</script>
+
+
+{% schema %}
+  {
+    "name": "brand logo slider",
+    "class": "brand-logo-section-main",
+    "settings": [],
+    "blocks": [{
+      "type": "brand-logo",
+      "name":"brand-logo",
+      "settings": [
+        {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+        },
+        {
+          "type": "text",
+          "id":"title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+        
+      }
+    ],
+    "presets": [{
+      "name": "brand logo"
+    }]
+  }
+{% endschema %}

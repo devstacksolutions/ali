@@ -1,0 +1,58 @@
+<style>
+ .free-shipping-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f7f7f7;
+  padding: 0px;
+  flex-direction: column; /* Added to make the text and progress bar stack vertically */
+}
+.free-shipping-text {
+  font-size: 12px;
+  margin-bottom: 10px /* Added margin to create space between text and progress bar */
+}
+progress{
+  -webkit-appearance: none;
+    appearance: none;
+    width: 210px;
+    height: 9px;
+  box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+  border-radius: 12px
+}  
+/* progress {
+  border-radius: 7px; 
+  width: 80%;
+  height: 22px;
+  margin-left: -11.5%;
+  box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+} */
+progress::-webkit-progress-bar {
+  background-color: lightgrey;
+  border-radius: 12px;
+}
+progress::-webkit-progress-value {
+  background-color: green;
+  border-radius: 12px;
+  /* box-shadow: 1px 1px 5px 3px rgba( 255, 0, 0, 0.8 ); */
+}
+progress::-moz-progress-bar {
+  /* style rules */
+}
+</style>
+
+{% assign freeShippingThreshold = 50000 %}
+
+<div class="free-shipping-container">
+  {% if cart.items.size == 0 %}
+    <p class="free-shipping-text">Get free shipping on orders above Rs. 100!</p>
+  {% endif %}
+  {% if cart.items.size != 0 %}
+    {% if cart.total_price >= freeShippingThreshold %}
+      <p class="free-shipping-text">You've got free shipping 👌</p>
+    {% elsif cart.total_price < freeShippingThreshold %}
+      <p class="free-shipping-text">You're only {{ freeShippingThreshold | minus: cart.total_price | money }} away from free shipping.</p>
+      <p><progress max="{{ freeShippingThreshold }}" value="{{ cart.total_price }}"></progress></p>
+    {% endif %}
+  {% endif %}
+</div>

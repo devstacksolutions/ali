@@ -1,0 +1,120 @@
+<style>
+  .two-banner-section-main .banner-imgs{
+    display: grid;
+   grid-template-columns: repeat(2, 1fr);
+  }
+  .two-banner-section-main .banner-imgs img{
+    width: 100%;
+  }
+  .two-banner-section-main .two-banner-parent{
+    position: relative;
+  }
+  .two-banner-section-main .content{
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .two-banner-section-main .content .inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(181, 177, 154, 0.9);
+    height: 420px;
+    width: 500px;
+  }
+  .two-banner-section-main .content .inner >h1{
+    font-family: cursive;
+  }
+  .two-banner-section-main .content .inner >h1,
+  .two-banner-section-main .content .inner >p{
+    margin: 0;
+     color: #fff;
+    font-weight: 300;
+    
+  }
+   .two-banner-section-main .content .inner >p{
+     font-size: 38px;
+   }
+  .two-banner-section-main .content .inner >a{
+    text-decoration: none;
+    color: #fff;
+    margin-top: 60px;
+  }
+  @media(max-width: 767px){
+    .two-banner-section-main .banner-imgs{
+    display: flex;
+    flex-direction: column;
+  }
+    .two-banner-section-main .content{
+      display: block;
+    }
+    .two-banner-section-main .content .inner{
+      width: 100%;
+      height: 50%
+    }
+     .two-banner-section-main .content .inner >p{
+       font-size: 34px;
+     }
+}
+</style>
+<section class="two-banner-parent">
+  <div class="banner-imgs">
+  <img src="{{ section.settings.imag1 | img_url : 'master'}}">
+  <img src="{{ section.settings.image2 | img_url : 'master'}}">
+  </div>
+  <div class="content">
+    <div class="inner">
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.sub-heading }}</p>
+    <a href="{{ section.settings.url }}">{{ section.settings.btn }}</a>
+  </div></div>
+</section>
+{% schema %}
+  {
+    "name": "custom two banner",
+    "class":"two-banner-section-main",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "imag1",
+        "label": "image-1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image2",
+        "label": "image-2"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+       {
+        "type": "textarea",
+        "id": "sub-heading",
+        "label": "Sub Heading"
+      },
+       {
+        "type": "text",
+        "id": "btn",
+        "label": "Button Label"
+      },
+       {
+        "type": "url",
+        "id": "url",
+        "label": "Button Link"
+      }
+      
+    ],
+    "presets": [
+      {
+        "name": "custom two banner"
+      }
+    ]
+  }
+{% endschema %}

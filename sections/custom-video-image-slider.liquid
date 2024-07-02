@@ -1,0 +1,312 @@
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<div class="slider-container">
+ {% for block in section.blocks %}  
+ 
+    {% case block.type %}
+  
+  {% when 'video' %}  
+        <div class="slide custom-video" {{ block.shopify_attributes }}>   
+    {%- if block.settings.youtube_vimeo_video == blank -%}
+      <div class="shopify-video">
+          {% if block.settings.shopify_video !=blank %}
+            {{ block.settings.shopify_video | video_tag: controls: true, autoplay: true, image_size: "1400x", muted: false, loop: true, playsinline: true, webkit-playsinline: true }}
+             {% else %}
+          <video class="desktopvideo" type="video/mp4" width="100%" data-loop="{{ block.settings.loop | json }}" muted playsinline data-autoplay autoplay="autoplay" preload="" controls>
+
+           <source src="{{ block.settings.videourl }}" type="video/mp4">
+            Your browser does not support the video tag.
+           </video>
+        
+            <video class="mobilevideo" type="video/mp4" width=100% loop="" controls muted playsinline data-autoplay autoplay="autoplay" preload="">
+           <source src="{{ block.settings.mob_videourl }}" type="video/mp4">
+            Your browser does not support the video tag.
+           </video>
+          {% endif %}
+      </div>
+    {%- else -%}
+    {%- if block.settings.youtube_vimeo_video.type == "youtube" -%}
+      <iframe src="//www.youtube.com/embed/{{ block.settings.youtube_vimeo_video.id }}?rel=0&showinfo=0&vq=720" width="50%" height="480" frameborder="0" allowfullscreen></iframe>
+    {%- endif -%}
+    {%- if block.settings.youtube_vimeo_video.type == "vimeo" -%}
+      <iframe src="//player.vimeo.com/video/{{ block.settings.youtube_vimeo_video.id }}?color={{ block.color_button | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+    {%- endif -%}    
+  {%- endif -%}
+        </div> 
+  
+      {% when 'image' %}
+        <div class="slide custom-image" {{ block.shopify_attributes }}>
+          <div class="desktopvideo">
+     <img src="{{ block.settings.image | img_url : 'master' }}">
+           
+      </div>
+          <div class="mobilevideo">
+      {% if  block.settings.mobimage %}
+     <img src="{{ block.settings.mobimage | img_url : 'master' }}">
+        {% else %}
+        <img src="{{ block.settings.image | img_url : 'master' }}">
+            {% endif %}
+      </div>
+        </div>
+  
+    {% endcase %} 
+ 
+  {% endfor %}
+  <!-- <div class="slide">text1</div>
+  <div class="slide">text2</div> -->
+  </div>
+<div class="arrow left"><i class="fas fa-chevron-left"></i></div>
+  <div class="arrow right"><i class="fas fa-chevron-right"></i></div>
+
+  <div class="dots">
+    <span class="dot"></span>
+    <span class="dot"></span>
+     <!-- <span class="dot"></span>
+     <span class="dot"></span> -->
+  </div>
+<style>
+ /* Slider container */
+    .slider-container {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Slides */
+    .slide {
+      width: 100%;
+      height: 100%;
+      display: none;
+      position: absolute;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    /* Navigation arrows */
+    .arrow {
+      position: absolute;
+      top: 60%;
+      transform: translateY(-50%);
+      font-size: 36px;
+      cursor: pointer;
+      z-index: 1;
+      color: #fff;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+    
+    .arrow:hover {
+      opacity: 1;
+    }
+    
+    .arrow.left {
+      left: 20px;
+    }
+    
+    .arrow.right {
+      right: 20px;
+    }
+    
+    /* Dots */
+    .dots {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #999;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .dot.active {
+      background-color: #555;
+    }
+   @media screen and (min-width: 768px) {
+     .mobilevideo{
+       display: none
+     }
+   }
+   @media screen and (max-width: 767px) {
+     .mobilevideo{
+       display: block;
+     }
+     .desktopvideo{
+       display: none;
+     }
+   }
+</style>
+<script>
+ // Get the video element
+var videoElement = document.querySelector('.desktopvideo');
+
+// Get the loop attribute value
+var loopAttributeValue = videoElement.getAttribute('data-loop');
+
+// Convert the value to a boolean
+var loop = JSON.parse(loopAttributeValue);
+
+// Set the loop attribute of the video element based on the loop value
+if (loop) {
+  videoElement.loop = true;
+} else {
+  videoElement.loop = false;
+}
+
+</script>
+<script>
+
+  // Get all the necessary elements
+    const container = document.querySelector('.slider-container');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const prevArrow = document.querySelector('.arrow.left');
+    const nextArrow = document.querySelector('.arrow.right');
+    const dots = Array.from(document.querySelectorAll('.dot'));
+
+    let currentSlide = 0;
+    let intervalId;
+
+    // Show the initial slide
+    slides[currentSlide].style.display = 'block';
+    dots[currentSlide].classList.add('active');
+
+    // Function to go to the next slide
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    // Function to go to the previous slide
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    // Function to go to a specific slide
+    function goToSlide(index) {
+      slides[currentSlide].style.display = 'none';
+      dots[currentSlide].classList.remove('active');
+      currentSlide = (index + slides.length) % slides.length;
+      slides[currentSlide].style.display = 'block';
+      dots[currentSlide].classList.add('active');
+    }
+
+    // Function to start auto-moving the slider
+    function startAutoMove() {
+      intervalId = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    // Function to stop auto-moving the slider
+    function stopAutoMove() {
+      clearInterval(intervalId);
+    }
+
+    // Event listeners for next and previous arrows
+    nextArrow.addEventListener('click', () => {
+      stopAutoMove();
+      nextSlide();
+      startAutoMove();
+    });
+
+    prevArrow.addEventListener('click', () => {
+      stopAutoMove();
+      prevSlide();
+      startAutoMove();
+    });
+
+    // Event listener for dots
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        stopAutoMove();
+        goToSlide(index);
+        startAutoMove();
+      });
+    });
+
+    // Start auto-moving the slider
+    //startAutoMove();
+
+</script>
+{% schema %}
+  {
+    "name": "Video Image Slider",
+    "settings": [],
+     "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+      "type": "header",
+      "content": "*Note: Use one option for video display"
+    },
+    {
+      "type": "video_url",
+      "id": "youtube_vimeo_video",
+      "label": "YouTube or Vimeo links",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type":"video",
+      "id":"shopify_video",
+      "label":"Upload Video"
+      },
+      {
+        "type":"url",
+        "id":"videourl",
+        "label":"desktop video url"
+        
+      },
+       {
+         "type":"url",
+         "id":"mob_videourl",
+         "label":"mobile video url"
+       },
+        {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Enable Video loop",
+      "default": true
+    }
+        
+    ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+         
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop image"
+        },
+        {
+         
+          "type": "image_picker",
+          "id": "mobimage",
+          "label": "Mobile image"
+        }
+      ]
+    }
+  ],
+     "presets": [
+    {
+      "name": "custom-video-image-slider"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

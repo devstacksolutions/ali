@@ -1,0 +1,196 @@
+<style>
+.custom-collection-slider-main img{
+  width: 100%;
+}
+.custom-collection-slider-main .customcolor{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 50%;
+}
+ .custom-collection-slider-main .var-link,a{
+    text-decoration: none;
+  }
+  .custom-collection-slider-main .product-link:hover img{
+    transform: scale(1.03);
+  }
+  .custom-collection-slider-main .product-link img{
+    transition: transform .5s ease;
+  }
+  .custom-collection-slider-main .image-parent{
+    overflow: hidden;
+  }
+  .custom-collection-slider-main .product-title{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 21px;
+    letter-spacing: 0;
+    color: #52543F;
+    text-align: left;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+ .custom-collection-slider-main .product-link:hover .product-title{
+            text-decoration: underline;
+        text-underline-offset: .3rem;
+  }
+  .custom-collection-slider-main .price-parent{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .custom-collection-slider-main .price-parent .sale-price{
+    font-size: 13px;
+  color: rgba(18, 18, 18, 0.75);
+  }
+  .custom-collection-slider-main .price-parent .regular-price{
+    color: #000;
+    font-weight: 600;
+    margin: 0;
+  }
+  .custom-collection-slider-main .regular-price-without-sale{
+    color: #000;
+    font-weight: 400;
+    margin: 0;
+  }
+  .custom-collection-slider-main .splide__arrow--prev {
+    background-color: #efeeec;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 0 8px 8px 0;
+}
+  .custom-collection-slider-main .splide__arrow--next {
+    background-color: #efeeec;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px 0 0 8px;
+}
+  .custom-collection-slider-main .product-title{
+    margin: 0;
+    padding: 17px 0 5px;
+  }
+@media(max-width: 768px){
+  .custom-collection-slider-main{
+    padding: 0 0 0 15px;
+  }
+}  
+</style>
+
+{% assign collection_main = collections[section.settings.collection_main] %}
+{% assign collection_limit = section.settings.collection_limit %}
+
+
+
+<section class="splide" aria-label="Splide Basic HTML Example">
+  <div class="splide__track">
+		<ul class="splide__list">
+          
+{% for product in collection_main.products limit: collection_limit %}
+{% assign first_variant = product.selected_or_first_available_variant %}
+{% assign featured_img_src = first_variant.featured_img.src | default: product.featured_image.src %}
+{% assign price = first_variant.price %}
+{% assign compare_at_price = first_variant.compare_at_price %}
+<div class="splide__slide splide-element">
+<a class="product-link" href="{{ product.url }}">
+  <div class="image-parent">
+<img src="{{ featured_img_src | img_url: "330x" }}" alt="{{ product.featured_img.alt }}" />
+  </div>
+
+<h1 class="product-title">{{ product.title }}</h1>
+</a>
+   {% for option in product.options_with_values %}
+  {% if option.name == 'color' %}
+    {% for var in product.variants %}
+      {% for value in option.values %}
+        {% if var.options contains value %}
+          <a class="var-link" href="{{ var.url }}">
+            <span class="customcolor" style="background-color:{{ value }}"></span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+   <div class="price-parent">  
+  {% if compare_at_price > price %}
+<s class="product__compare-at-price sale-price">{{ compare_at_price | money }}</s>
+<p class="product__product-price regular-price">{{ price | money }}</p>
+{% else %}
+<p class="product__product-price regular-price-without-sale">{{ price | money }}</p>
+ 
+{% endif %}</div>
+ 
+</div>
+{% endfor %}
+          
+        </ul></div></section>
+<script>
+ var splide = new Splide( '.splide', {
+  type   : 'loop',
+  perPage: 4,
+  perMove: 1,
+   gap: '10px',
+    pagination: boolean = false,
+   
+       breakpoints: {
+
+      1100: {
+        perPage: 3,
+       
+      },
+       680: {
+        perPage: 2,
+        arrows: boolean = false
+         
+      },
+         400: {
+        perPage: 1,
+         
+      }
+}
+ 
+   
+} );
+
+splide.mount();
+</script>
+{% schema %}
+{
+"name": "Collection Slider",
+  "class": "custom-collection-slider-main",
+"settings": [
+{
+"type": "collection",
+"id": "collection_main",
+"label": "Choose a Collection"
+},
+{
+"type": "color",
+"id": "bg",
+"label": "Background Color"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title",
+"default": "Featured Collection Slider"
+}
+
+],
+"presets": [
+{
+"name": "Collection Slider",
+"category": "Slider"
+}
+]
+}
+{% endschema %}

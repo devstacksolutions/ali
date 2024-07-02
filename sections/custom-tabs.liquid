@@ -1,0 +1,143 @@
+  <style>
+    .tab {
+      display: none;
+    }
+    .tab.active {
+      display: block;
+    }
+    .tab-content {
+      margin-top: 10px;
+    }
+    .tab-buttons {
+      margin-bottom: 10px;
+    }
+    .tab-button {
+      padding: 5px 10px;
+      cursor: pointer;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+    .tab-button.active {
+      background-color: #ddd;
+    }
+    .tab-content{
+      display: none
+    }
+    .custom-grid{
+         justify-content: space-evenly;
+       }
+     @media screen and (min-width: 768px) { 
+       .tab-buttons{
+             display: flex;
+              justify-content: center;
+              margin: 20px 0;
+       }
+       
+     }
+     @media screen and (max-width: 767px) {
+        .tab-buttons{
+          margin: 10px;
+        }
+        .tab-button{
+         margin-bottom: 10px
+       }
+     } 
+  </style>
+
+  <div class="tab-buttons">
+    <div class="tab-button" onclick="openTab(event, 'tab1')">Tab 1</div>
+    <div class="tab-button" onclick="openTab(event, 'tab2')">Tab 2</div>
+    <div class="tab-button" onclick="openTab(event, 'tab3')">Tab 3</div>
+  </div>
+  
+{% for block in section.blocks %}
+  {% assign collection = block.settings.collection-id %}
+  <div class="tab-content" id="tab{{ forloop.index }}" data-collection-url="{{ collection.url }}">
+   <center>{{ collection.title }}</center>
+    <br>
+  <div class="grid custom-grid">
+    {% for product in collection.products %}
+      <p>{{ product.title }}</p>
+    {% endfor %}</div>
+  </div>
+{% endfor %}
+
+
+
+  <script>
+    function openTab(event, tabName) {
+      // Hide all tab contents
+      const tabContents = document.getElementsByClassName("tab-content");
+      for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].style.display = "none";
+      }
+
+      // Deactivate all tab buttons
+      const tabButtons = document.getElementsByClassName("tab-button");
+      for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove("active");
+      }
+
+      // Show the selected tab content
+      document.getElementById(tabName).style.display = "block";
+
+      // Activate the clicked tab button
+      event.currentTarget.classList.add("active");
+      // Display the collection URL for the selected tab
+    const collectionUrl = document.getElementById(tabName).getAttribute("data-collection-url");
+    window.history.pushState(null, "", collectionUrl);
+  }
+
+
+   // By default, open the first tab
+  // document.getElementById("tab1").style.display = "block";
+  // document.querySelector(".tab-button").classList.add("active");
+
+  // Show the URL of the first collection in the address bar when the page loads
+  // window.onload = function () {
+  //   const firstCollectionUrl = document.getElementById("tab1").getAttribute("data-collection-url");
+  //   window.history.replaceState(null, "", firstCollectionUrl);
+  // };
+</script>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Custom tab",
+    "settings": [],
+     "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "collecction",
+      "name": "collection",
+      "settings": [
+        {
+      "type": "header",
+      "content": "Selection Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection-id",
+      "label": "Upload collection" 
+    }
+  ]
+   }
+         ],
+     "presets": [
+    {
+      "name": "custom tabs"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

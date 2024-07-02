@@ -1,0 +1,384 @@
+
+
+<link {% if section.settings.section_preload == "true" %} href="{{ 'gp-section-516835928979801251.css' | asset_url }}" {% else %} class="gps-link" delay="{{ 'gp-section-516835928979801251.css' | asset_url }}" {% endif %} rel="stylesheet" type="text/css" media="all">
+
+      
+      
+            <section
+              class="gp-mx-auto gp-max-w-full {% if section.settings.section_preload == "false" %}gps-lazy {% endif %}"
+              style="--w:100%;--w-tablet:100%;--w-mobile:100%;--pl:0px;--pl-tablet:0px;--pl-mobile:0px;--pr:0px;--pr-tablet:0px;--pr-mobile:0px"
+            >
+              
+    <div
+      id="g4-DuGCtO_"
+        style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-none);--mt:0px;--ml:auto;--mb:0px;--mr:auto;--pt:0px;--pl:26px;--pb:0px;--pr:0px;--pt-mobile:27px;--pl-mobile:0px;--pb-mobile:57px;--mt-tablet:0px;--ml-tablet:auto;--mb-tablet:0px;--mr-tablet:auto;--pt-tablet:0px;--pl-tablet:26px;--pb-tablet:0px;--pr-tablet:0px;--cg:32px;--pc:start;--gtc:minmax(0, 12fr);--w:100%;--w-tablet:100%;--w-mobile:100%;--bgc:#FDEAD3;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll"
+        class="g4-DuGCtO_ gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-gap-y-0 gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full"
+    >
+    <div
+      label="Block" tag="Col" type="component"
+      style="--jc:start"
+      class="g6zxhUzYRd gp-relative gp-flex gp-flex-col"
+    >
+      
+      
+      
+    <div
+      parentTag="Col" id="gcrFCvjCE0"
+        style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-none);--ml:auto;--mb:0px;--mr:auto;--pl:0px;--pr:0px;--mb-mobile:0px;--pl-mobile:18px;--pr-mobile:18px;--cg:30px;--pc:center;--gtc:minmax(0, auto) minmax(0, auto);--gtc-mobile:minmax(0, auto);--w:1135px;--w-tablet:var(--g-ct-w, 100%);--w-mobile:var(--g-ct-w, 100%);--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll"
+        class="gcrFCvjCE0 gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-gap-y-0 gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full"
+    >
+    <div
+      label="Block" tag="Col" type="component"
+      style="--jc:start;--o-mobile:1"
+      class="gYY_WOxILC gp-relative gp-flex gp-flex-col"
+    >
+      
+      
+      
+    <div
+      parentTag="Col" id="gi_WB-OcUx"
+        style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:grid;--d-mobile:grid;--d-tablet:grid;--op:100%;--radius:var(--g-radius-none);--pt:36px;--pl:0px;--pr:0px;--mt-mobile:25px;--pt-mobile:0px;--pl-mobile:0px;--pr-mobile:0px;--cg:8px;--pc:start;--gtc:minmax(0, 12fr);--w:629px;--w-tablet:var(--g-ct-w, 100%);--w-mobile:var(--g-ct-w, 100%);--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll"
+        class="gi_WB-OcUx gp-mx-auto gp-mb-0 gp-grid gp-max-w-full gp-gap-y-0 gp-transition-colors gp-duration-200 gp-ease-in-out [&_*]:gp-max-w-full"
+    >
+    <div
+      label="Block" tag="Col" type="component"
+      style="--jc:start"
+      class="gcLWfy35Dk gp-relative gp-flex gp-flex-col"
+    >
+      <div
+    
+    role="presentation"
+    class="gp-group/image g7jifs0mqL"
+    style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:none;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--ta:left"
+    >
+      <div
+        class="pointer-events-auto h-full"
+        
+        class="gp-h-full gp-w-full"
+        style="--shadow:none;border-radius:inherit;--ta:left"
+      >
+        
+  {%- liquid
+    assign isFetchPriorityHigh = 'false'
+    
+      assign mediaIndex = 1
+      if forloop
+        assign mediaIndex = forloop.index
+      endif
+      assign sectionPreload = "false"
+
+      if section.settings.section_preload == 'true'
+        assign sectionPreload = "true"
+      endif
+      if sectionPreload == "true" and mediaIndex == 1
+        assign isFetchPriorityHigh = 'true'
+      endif
+  -%}
+  {%- if isFetchPriorityHigh == 'true' -%}
+    <img
+      quality="70" title
+      
+      draggable="false"
+      class="!gp-inline gp-h-full gp-max-w-full gp-flex"
+      src="{{ "gempages_432750572815254551-af30f3d5-6e38-4b09-92aa-599bf8754e63.png" | file_url }}" width="326" height="38" alt="Alt image"
+      fetchpriority="high"
+      quality-type={}
+      quality-percent={}
+      data-sizes="auto"
+      sizes="100vw"
+      style="--aspect:326/38;--aspect-tablet:326/38;--aspect-mobile:326/38;--objf:cover;--w:326px;--w-tablet:326px;--w-mobile:326px;--h:auto;--h-tablet:auto;--h-mobile:auto;--bs:none;--bw:1px 1px 1px 1px;--bc:#000000;--radius:var(--g-radius-none);border-radius:inherit"
+    />
+  {%- else -%}
+    <img
+      quality="70" title
+      
+      draggable="false"
+      class="!gp-inline gp-h-full gp-max-w-full gp-flex gp_lazyload"
+      data-src="{{ "gempages_432750572815254551-af30f3d5-6e38-4b09-92aa-599bf8754e63.png" | file_url }}" data-srcset="{{ 'gempages_432750572815254551-af30f3d5-6e38-4b09-92aa-599bf8754e63.png' | file_img_url: '768x768' }} 768w, {{ 'gempages_432750572815254551-af30f3d5-6e38-4b09-92aa-599bf8754e63.png' | file_img_url: '1024x1024' }} 1024w, {{ 'gempages_432750572815254551-af30f3d5-6e38-4b09-92aa-599bf8754e63.png' | file_img_url: 'master' }} 1440w" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+Pr1638ACaED3/nOThIAAAAASUVORK5CYII=" width="326" height="38" alt="Alt image"
+      quality-type={}
+      quality-percent={}
+      data-sizes="auto"
+      sizes="100vw"
+      style="--aspect:326/38;--aspect-tablet:326/38;--aspect-mobile:326/38;--objf:cover;--w:326px;--w-tablet:326px;--w-mobile:326px;--h:auto;--h-tablet:auto;--h-mobile:auto;--bs:none;--bw:1px 1px 1px 1px;--bc:#000000;--radius:var(--g-radius-none);border-radius:inherit"
+    />
+  {%- endif -%}
+  
+      </div>
+  </div>
+      <style
+        id="custom-css-g7jifs0mqL"
+      >.g7jifs0mqL {
+
+}
+.g7jifs0mqL > figure > img {
+
+}</style>
+    
+    <div
+      parentTag="Col"
+        class="g4tTWlRMlL "
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mt:90px;--mt-mobile:0px;--mr-mobile:0px;--pr-mobile:80px;--mt-tablet:32px"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <h1
+         
+          data-gp-text
+          class="[&_p]:gp-inline [&_p]:after:gp-whitespace-pre-wrap [&_p]:after:gp-content-['\A'] gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--ta:left;--ff:var(--g-font-Subjectivity, 'Subjectivity'), var(--g-font-heading, heading);--weight:700;--ls:0px;--lh:110%;--size:61px;--size-tablet:38px;--size-mobile:32px;--c:#000000;--tt:capitalize;word-break:break-word;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;overflow:hidden"
+        >{{ section.settings.gg4tTWlRMlL_text | downcase }}</h1>
+      </div>
+    </div>
+    <div
+      parentTag="Col"
+        class="gKbDMO8134 "
+        style="--ta:left;--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mt:11px;--pr:98px;--mt-mobile:10px;--pr-mobile:26px"
+      >
+      <div class="gp-flex" style="--jc:left">
+        <div
+         
+          data-gp-text
+          class="[&_p]:gp-inline [&_p]:after:gp-whitespace-pre-wrap [&_p]:after:gp-content-['\A'] gp-text"
+          style="--w:100%;--w-tablet:100%;--w-mobile:100%;--ta:left;--line-clamp:unset;--line-clamp-tablet:unset;--line-clamp-mobile:unset;--ff:var(--g-font-Subjectivity, 'Subjectivity'), var(--g-font-body, body);--weight:400;--ls:0px;--lh:125%;--size:20px;--size-tablet:16px;--size-mobile:14px;--c:#000000;word-break:break-word;--bgc:transparent;--bgi:url();--bgp:50% 50%;--bgs:cover;--bgr:no-repeat;--bga:scroll;overflow:hidden"
+        >{{ section.settings.ggKbDMO8134_text }}</div>
+      </div>
+    </div>
+      <style
+        id="custom-css-gKbDMO8134"
+      >.gKbDMO8134 {
+
+}
+.gKbDMO8134 p {
+
+}</style>
+    
+  <gp-button style="">
+  <div
+    
+    style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mt:57px;--mt-mobile:31px;--mt-tablet:24px;--ta:left"
+    class=""
+  >
+    <style>
+    .gYzIV4PC18.gp-button-base::before {
+      content: "";
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      pointer-events: none;
+      border-style: none;
+  border-width: 1px 1px 1px 1px;
+  
+  
+      
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      
+    }
+
+    .gYzIV4PC18:hover::before {
+      
+      
+    }
+  </style>
+    <a
+      href="#gdD22Ol2p4" target="_self" data-id="gYzIV4PC18" aria-label="SHOP NOW"
+      
+      data-state="idle"
+      class="gYzIV4PC18 gp-button-base gp-rounded-none gp-max-w-full gp-relative gp-group gp-inline-flex gp-items-center gp-justify-center gp-no-underline gp-transition-colors gp-duration-300 disabled:gp-btn-disabled disabled:gp-opacity-30 disabled:gp-pointer-events-none gp-text-g-text-3"
+      style="--hvr-bg:#000000;--bg:#000000;--bblr:0px;--bbrr:0px;--btlr:0px;--btrr:0px;--shadow:none;--c:var(--g-c-text-3, text-3);--w:;--w-tablet:;--w-mobile:;--h:;--h-tablet:;--h-mobile:;--pl:53px;--pr:53px;--pt:25px;--pb:24px;--pl-mobile:23px;--pr-mobile:23px;--pt-mobile:15px;--pb-mobile:12px;--tt:none;--ff:var(--g-font-Subjectivity, 'Subjectivity'), var(--g-font-body, body);--weight:700;--ls:0px;--lh:125%;--size:16px;--size-tablet:16px;--size-mobile:14px"
+    >
+        <svg
+          class="gp-invisible gp-absolute gp-h-5 gp-w-5 group-data-[state=loading]:gp-animate-spin group-data-[state=loading]:gp-visible"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="gp-opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          ></circle>
+          <path
+            class="gp-opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+
+    
+      <span
+        class="gp-break-words group-data-[state=loading]:gp-invisible [&_p]:gp-whitespace-pre-line gp-z-1 gp-h-full gp-flex gp-items-center gp-overflow-hidden "
+        style="--tt:default"
+      >
+        {{ section.settings.ggYzIV4PC18_label }}
+      </span>
+    </a>
+  </div>
+  </gp-button>
+
+      <style
+        id="custom-css-gYzIV4PC18"
+      >button.gYzIV4PC18 {
+
+}</style>
+    
+    </div>
+    </div>
+  
+    
+    </div><div
+      label="Block" tag="Col" type="component"
+      style="--jc:start;--o-mobile:0"
+      class="glg3WVTcuC gp-relative gp-flex gp-flex-col"
+    >
+      <div
+    
+    role="presentation"
+    class="gp-group/image gDAnui6ruY"
+    style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:none;--d-mobile:block;--d-tablet:none;--op:100%;--radius:var(--g-radius-none);--mb:var(--g-s-l);--mt-mobile:0px;--mb-mobile:0px;--ta:left;--ta-mobile:center"
+    >
+      <div
+        class="pointer-events-auto h-full"
+        
+        class="gp-h-full gp-w-full"
+        style="--shadow:none;border-radius:inherit;--ta:left;--ta-mobile:center"
+      >
+        
+  {%- liquid
+    assign isFetchPriorityHigh = 'false'
+    
+  -%}
+  {%- if isFetchPriorityHigh == 'true' -%}
+    <img
+      quality="70" title
+      
+      draggable="false"
+      class="!gp-inline gp-h-full gp-max-w-full gp-flex"
+      src="https://cdn.shopify.com/s/files/1/0609/4389/2534/files/gempages_513767203451962558-2e36687d-333e-4313-8dca-5b21dc14053c.png?v=1716271399" width="978" height="114" alt="Alt image"
+      fetchpriority="high"
+      quality-type={}
+      quality-percent={}
+      data-sizes="auto"
+      sizes="100vw"
+      style="--aspect:978/114;--aspect-tablet:978/114;--aspect-mobile:978/114;--objf:cover;--w:326px;--w-tablet:326px;--w-mobile:235px;--h:auto;--h-tablet:auto;--h-mobile:auto;--bs:none;--bw:1px 1px 1px 1px;--bc:#000000;--radius:var(--g-radius-none);border-radius:inherit"
+    />
+  {%- else -%}
+    <img
+      quality="70" title
+      
+      draggable="false"
+      class="!gp-inline gp-h-full gp-max-w-full gp-flex gp_lazyload"
+      data-src="https://cdn.shopify.com/s/files/1/0609/4389/2534/files/gempages_513767203451962558-2e36687d-333e-4313-8dca-5b21dc14053c.png?v=1716271399" data-srcset="https://cdn.shopify.com/s/files/1/0609/4389/2534/files/gempages_513767203451962558-2e36687d-333e-4313-8dca-5b21dc14053c.png?v=1716271399 768w,https://cdn.shopify.com/s/files/1/0609/4389/2534/files/gempages_513767203451962558-2e36687d-333e-4313-8dca-5b21dc14053c.png?v=1716271399 1024w,https://cdn.shopify.com/s/files/1/0609/4389/2534/files/gempages_513767203451962558-2e36687d-333e-4313-8dca-5b21dc14053c.png?v=1716271399 1440w" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+Pr1638ACaED3/nOThIAAAAASUVORK5CYII=" width="978" height="114" alt="Alt image"
+      quality-type={}
+      quality-percent={}
+      data-sizes="auto"
+      sizes="100vw"
+      style="--aspect:978/114;--aspect-tablet:978/114;--aspect-mobile:978/114;--objf:cover;--w:326px;--w-tablet:326px;--w-mobile:235px;--h:auto;--h-tablet:auto;--h-mobile:auto;--bs:none;--bw:1px 1px 1px 1px;--bc:#000000;--radius:var(--g-radius-none);border-radius:inherit"
+    />
+  {%- endif -%}
+  
+      </div>
+  </div>
+      <style
+        id="custom-css-gDAnui6ruY"
+      >.gDAnui6ruY {
+
+}
+.gDAnui6ruY > figure > img {
+
+}</style>
+    <div
+    
+    role="presentation"
+    class="gp-group/image gmzsWhemO0"
+    style="--b:solid;--bc:#121212;--bw:0px;--shadow:none;--d:block;--d-mobile:block;--d-tablet:block;--op:100%;--radius:var(--g-radius-none);--mt-mobile:25px;--ta:center"
+    >
+      <div
+        class="pointer-events-auto h-full"
+        
+        class="gp-h-full gp-w-full"
+        style="--shadow:none;border-radius:inherit;--ta:center"
+      >
+        
+  {%- liquid
+    assign isFetchPriorityHigh = 'false'
+    
+      assign mediaIndex = 1
+      if forloop
+        assign mediaIndex = forloop.index
+      endif
+      assign sectionPreload = "false"
+
+      if section.settings.section_preload == 'true'
+        assign sectionPreload = "true"
+      endif
+      if sectionPreload == "true" and mediaIndex == 1
+        assign isFetchPriorityHigh = 'true'
+      endif
+  -%}
+  {%- if isFetchPriorityHigh == 'true' -%}
+    <img
+      quality="70" title
+      
+      draggable="false"
+      class="!gp-inline gp-h-full gp-max-w-full gp-flex"
+      src="{{ "gempages_432750572815254551-42e92513-7575-4ac2-93ee-8559a41b4fdd.png" | file_url }}" width="652" height="753" alt="Alt image"
+      fetchpriority="high"
+      quality-type={}
+      quality-percent={}
+      data-sizes="auto"
+      sizes="100vw"
+      style="--aspect:652/753;--aspect-tablet:652/753;--aspect-mobile:652/753;--objf:cover;--objf-mobile:cover;--w:650px;--w-tablet:650px;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--bs:none;--bw:1px 1px 1px 1px;--bc:#000000;--radius:var(--g-radius-none);border-radius:inherit"
+    />
+  {%- else -%}
+    <img
+      quality="70" title
+      
+      draggable="false"
+      class="!gp-inline gp-h-full gp-max-w-full gp-flex gp_lazyload"
+      data-src="{{ "gempages_432750572815254551-42e92513-7575-4ac2-93ee-8559a41b4fdd.png" | file_url }}" data-srcset="{{ 'gempages_432750572815254551-42e92513-7575-4ac2-93ee-8559a41b4fdd.png' | file_img_url: '768x768' }} 768w, {{ 'gempages_432750572815254551-42e92513-7575-4ac2-93ee-8559a41b4fdd.png' | file_img_url: '1024x1024' }} 1024w, {{ 'gempages_432750572815254551-42e92513-7575-4ac2-93ee-8559a41b4fdd.png' | file_img_url: 'master' }} 1440w" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+Pr1638ACaED3/nOThIAAAAASUVORK5CYII=" width="652" height="753" alt="Alt image"
+      quality-type={}
+      quality-percent={}
+      data-sizes="auto"
+      sizes="100vw"
+      style="--aspect:652/753;--aspect-tablet:652/753;--aspect-mobile:652/753;--objf:cover;--objf-mobile:cover;--w:650px;--w-tablet:650px;--w-mobile:100%;--h:auto;--h-tablet:auto;--h-mobile:auto;--bs:none;--bw:1px 1px 1px 1px;--bc:#000000;--radius:var(--g-radius-none);border-radius:inherit"
+    />
+  {%- endif -%}
+  
+      </div>
+  </div>
+      <style
+        id="custom-css-gmzsWhemO0"
+      >.gmzsWhemO0 {
+
+}
+.gmzsWhemO0 > figure > img {
+
+}</style>
+    
+    </div>
+    </div>
+  
+    
+    </div>
+    </div>
+  
+            </section>
+          
+    
+<style {% if section.settings.section_preload != "true" %}class="gps-link" type="text/disabled-css"{% endif %}></style>
+
+{% schema %}
+  {
+    
+    "name": "Section 1",
+    "tag": "section",
+    "class": "gps-516835928979801251 gps gpsil",
+    "settings": [{"type":"paragraph","content":"Section design by GemPages. [Click here to start design](https://admin.shopify.com/store/mybestpractice/apps/bold/app/shopify/edit?pageType=GP_STATIC&editorId=516835886348895112&sectionId=516835928979801251)"},{"type":"select","label":"Section Preload","id":"section_preload","options":[{"label":"On","value":"true"},{"label":"Off","value":"false"},{"label":"Off Lazy Script","value":"off_lazy_script"}],"default":"false"},{"type":"html","id":"gg4tTWlRMlL_text","label":"gg4tTWlRMlL_text","default":"The Kitchen Upgrade Mom Deserves"},{"type":"html","id":"ggKbDMO8134_text","label":"ggKbDMO8134_text","default":"<p>Give the gift of non-toxic kitchenware &amp; save up to 15% for a limited time.</p>"},{"type":"html","id":"ggYzIV4PC18_label","label":"ggYzIV4PC18_label","default":"SHOP NOW"}],
+    "blocks": [{"type": "@app"}]
+  }
+{% endschema %}

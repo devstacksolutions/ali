@@ -1,0 +1,332 @@
+{%- comment -%} Text: custom font_picker values {%- endcomment -%}
+{%- capture font_settings_list -%}
+{{ section.settings.main_font | font_face: font_display: 'swap' }}~
+{{ section.settings.main_font | font_modify: 'weight', 'bolder' | font_face: font_display: 'swap' }}~
+{{ section.settings.main_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}~
+{{ section.settings.main_font | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face: font_display: 'swap' }}
+{%- endcapture -%}
+{%- assign font_array = font_settings_list | split: '~' -%}
+
+{%- capture minify -%}
+{%- comment -%} CSS {%- endcomment -%}
+<style>
+{%- if section.settings.override_theme_font != blank -%}
+  {%- for font in font_array -%}
+    {%- unless font contains 'error' -%}{{ font }}{%- endunless -%}
+  {%- endfor -%}
+  {%- capture main_font -%}{{ section.settings.main_font.family }}, {{ section.settings.main_font.fallback_families }}{%- endcapture -%}
+  {%- capture heading_font -%}{{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }}{%- endcapture -%}
+{%- endif -%}
+
+#DP--{{ section.id }} {
+  position: relative;
+  overflow: hidden;
+  background: {{ section.settings.background_color }};
+  margin-top: {{ section.settings.outer_margin }}px;
+  margin-bottom: {{ section.settings.outer_margin }}px;
+  height: 40px;
+}
+
+#DP--{{ section.id }} .dsgn-pck__marquee__inner {
+  display:flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  height: 40px;
+  min-width: 100%;
+  padding-top: {{ section.settings.inner_padding }}px;
+  padding-bottom: {{ section.settings.inner_padding }}px;
+  padding-top: {{ section.settings.inner_padding }}px;
+  padding-bottom: {{ section.settings.inner_padding }}px;
+}
+
+  #DP--{{ section.id }} .dsgn-pck__marquee__inner:hover {
+  background: {{section.settings.background_color_hover}};
+  
+  }
+
+#DP--{{ section.id }} .dsgn-pck__marquee__block {
+  display: flex;
+  flex-shrink: 0;
+  color: {{ section.settings.text_color }};
+  align-items: center;
+  animation: slide-left {{ section.settings.speed }}s linear infinite;
+  font-family: OpenSauceOne-Bold!important;
+  text-transform: uppercase;
+}
+
+  #DP--{{ section.id }} .dsgn-pck__marquee__block:hover {
+  
+  }
+
+@media screen and (max-width:749px) {
+  #DP--{{ section.id }}, #DP--{{ section.id }} .dsgn-pck__marquee__inner {
+  height: 28px;
+  }
+}
+
+#DP--{{ section.id }} .dsgn-pck__marquee-pause-true:hover .dsgn-pck__marquee__block {
+  animation-play-state: paused;
+  color: {{section.settings.text_color_hover}};
+}
+
+#DP--{{ section.id }} .dsgn-pck__text {
+  margin: 0;
+  {%- if section.settings.override_theme_font != blank -%}
+  font-family: {{ main_font }};
+  font-weight: {{ section.settings.main_font.weight }};
+  font-style: {{ section.settings.main_font.style }};
+  {%- endif -%}
+}
+
+#DP--{{ section.id }} .dsgn-pck__marquee__block img {
+  width: auto;
+  display: inline-block;
+  padding-left: 20px;
+}
+
+@keyframes slide-left {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dsgn-pck__marquee {
+    animation: none;
+    width: auto;
+    display: block;
+    line-height: 1.5;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+{%- if section.settings.custom_css != blank -%}
+  {%- assign custom_section_declarations = section.settings.custom_css | split: '}' -%}
+  {%- for declaration in custom_section_declarations -%}
+    {%- if declaration contains '{' -%}
+      #DP--{{ section.id }} {{ declaration }} }
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+  #DP--{{ section.id }} .dsgn-pck__marquee__block,
+  #DP--{{ section.id }} .dsgn-pck__marquee__block img {
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 749px) {
+  #DP--{{ section.id }} {
+    margin-top: {{ section.settings.outer_margin | divided_by: 2 }}px;
+    margin-bottom: {{ section.settings.outer_margin | divided_by: 2 }}px;
+  }
+
+  #DP--{{ section.id }} .dsgn-pck__marquee__inner {
+    padding-top: {{ section.settings.inner_padding | divided_by: 2 }}px;
+    padding-bottom: {{ section.settings.inner_padding | divided_by: 2 }}px;
+  }
+
+  {%- if section.settings.mobile_custom_css != blank -%}
+    {%- assign mobile_custom_declarations = section.settings.mobile_custom_css | split: '}' -%}
+    {%- for declaration in mobile_custom_declarations -%}
+      {%- if declaration contains '{' -%}
+        #DP--{{ section.id }} {{ declaration }} }
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+}
+</style>
+
+{%- comment -%} HTML {%- endcomment -%}
+<section id="DP--{{ section.id }}" class="DP--{{ section.id }} dsgn-pck__marquee dsgn-pck__section">
+  <div class="dsgn-pck__marquee__inner dsgn-pck__marquee-pause-{{ section.settings.scrolling_pause }}">
+    {%- for i in (1..8) -%}
+      <div class="dsgn-pck__marquee__block">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 2800 | image_tag: loading: 'lazy' }}
+        {%- endif -%}
+{% if section.settings.text_url != blank %}
+     <{{ section.settings.headingtag }}> <a href = "{{section.settings.text_url}}"
+  {% endif %}
+        <{{ section.settings.headingtag }} class="dsgn-pck__text">{{ section.settings.text }}</{{ section.settings.headingtag }}>
+   {% if section.settings.text_url != blank %}
+
+        </a></{{ section.settings.headingtag }}>
+     {% endif %}
+        </div>
+    {%- endfor -%}
+  </div>
+</section>
+{%- endcapture -%}
+{{ minify | strip_newlines }}
+
+{% schema %}
+{
+  "name": "Marquees",
+  "class": "DP__marquee",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+     {
+      "type": "url",
+      "id": "text_url",
+      "label": "URL"
+    },
+    {
+      "type": "text",
+      "id": "headingtag",
+      "label": "Heading Tag",
+      "default": "h4"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed",
+      "min": 1,
+      "max": 30,
+      "default": 20,
+      "unit": "sec"
+    },
+    {
+      "type": "checkbox",
+      "id": "scrolling_pause",
+      "label": "Pause scrolling on hover",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "✏️ Text appearance"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 80,
+      "max": 120,
+      "step": 5,
+      "default": 100,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Design"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color_hover",
+      "label": "Text hover"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background"
+    },
+     {
+      "type": "color",
+      "id": "background_color_hover",
+      "label": "Background hover"
+    },
+    {
+      "type": "header",
+      "content": "🖼 Layout"
+    },
+    {
+      "type": "range",
+      "id": "inner_padding",
+      "label": "Inner padding",
+      "info": "Only applies to top and bottom.",
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "outer_margin",
+      "label": "Outer margin",
+      "info": "Only applies to top and bottom.",
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "height_des",
+      "label": "Height",
+      "min": 0,
+      "max": 100,
+      "default": 40,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "height_mob",
+      "label": "Height",
+      "min": 0,
+      "max": 100,
+      "default": 30,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "🚨 Advanced"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "CSS"
+    },
+    {
+      "type": "textarea",
+      "id": "mobile_custom_css",
+      "label": "Mobile CSS",
+      "info": "Applied on screens less than 750px."
+    },
+    {
+      "type": "checkbox",
+      "id": "override_theme_font",
+      "label": "Override default theme font",
+      "default": false
+    },
+    {
+      "type": "font_picker",
+      "id": "main_font",
+      "label": "Text",
+      "default": "sans-serif"
+    }
+  ],
+  "presets": [
+    {
+      "name": "✨ Marquee"
+    }
+  ]
+}
+{% endschema %}

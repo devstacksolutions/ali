@@ -1,0 +1,167 @@
+<style>
+  .container {
+    height: 100vh;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    position: relative;
+  }
+
+  .section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  #section1 {
+    background-color: lightblue;
+  }
+
+  #section2 {
+    background-color: lightgreen;
+  }
+
+  #section3 {
+    background-color: lightyellow;
+  }
+  #section4{
+    background-color: beige;
+  }
+  #section5{
+    background-color:cyan ;
+  }
+  #section6{
+    background-color: darkslateblue;
+  }
+
+  .dots {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: gray;
+    margin: 5px 0;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background-color: black;
+  }
+  .dots .dot{
+    display: block
+  }
+</style>
+
+<div class="container" id="container">
+  
+  {% for block in section.blocks %}
+  <div id="section{{ forloop.index}}" class="section">
+    <h1>Section {{ forloop.index }}</h1>
+  </div>
+ {% endfor %}
+
+  <div class="dots">
+    {% for block in section.blocks %}
+    <div id="dot{{ forloop.index }}" class="dot {% if forloop.index == 1 %} active {% endif %}"></div>
+      {% endfor %}
+  </div>
+  
+</div>
+
+<script>
+  const sectionElements = document.getElementsByClassName('section');
+  const dotElements = document.getElementsByClassName('dot');
+  let currentSectionIndex = 0;
+  const container = document.getElementById('container');
+  const sectionHeight = window.innerHeight;
+  let isScrolling = false;
+
+  function scrollToSection(index) {
+    if (index < 0 || index >= sectionElements.length || isScrolling) {
+      return;
+    }
+
+    isScrolling = true;
+
+    const targetPosition = index * sectionHeight;
+    container.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth'
+    });
+
+    currentSectionIndex = index;
+    updateActiveDot(index);
+
+    setTimeout(() => {
+      isScrolling = false;
+    }, 1000); // Delay to prevent rapid scrolling
+  }
+
+  function updateActiveDot(index) {
+    for (let i = 0; i < dotElements.length; i++) {
+      dotElements[i].classList.toggle('active', i === index);
+    }
+  }
+
+  function handleScroll(event) {
+    event.preventDefault(); // Prevent the default scroll behavior
+    const deltaY = event.deltaY;
+    if (deltaY > 0) {
+      scrollToSection(currentSectionIndex + 1);
+    } else if (deltaY < 0) {
+      scrollToSection(currentSectionIndex - 1);
+    }
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === 'ArrowUp') {
+      scrollToSection(currentSectionIndex - 1);
+    } else if (event.key === 'ArrowDown') {
+      scrollToSection(currentSectionIndex + 1);
+    }
+  }
+
+  function handleDotClick(index) {
+    scrollToSection(index);
+  }
+
+  for (let i = 0; i < dotElements.length; i++) {
+    dotElements[i].addEventListener('click', () => {
+      handleDotClick(i);
+    });
+  }
+
+  container.addEventListener('wheel', handleScroll);
+  window.addEventListener('keydown', handleKeyDown);
+</script>
+
+{% schema %}
+{
+  "name": "custom-vertical-slider",
+  "class": "vertical-slider-main",
+  "settings": [],
+  "blocks": [{
+    "type": "VR-slider",
+    "name": "VR-slider",
+    "settings": [{
+      "type": "text",
+      "id":"title",
+      "label":"title"
+
+    }]
+  }],
+  "presets": [{
+    "name": "custom-vertical-slider"
+  }]
+}
+{% endschema %}

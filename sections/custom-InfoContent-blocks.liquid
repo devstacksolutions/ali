@@ -1,0 +1,77 @@
+<div class="infocontent-main">
+  {% for block in section.blocks %}
+      <div class="inner-block">
+          <img src="{{ block.settings.image | img_url : "master" }}">
+            <span>
+            <b>{{ block.settings.title }}</b>
+            {{ block.settings.content }}
+          </span>
+              
+      </div>
+     {% endfor %}
+</div>
+
+<style>
+  span b{
+    display: block;
+  }
+.infocontent-main{
+   display: grid;
+  grid-template-columns: 30% 35% 35%;
+   justify-content: center;
+  gap: 20px;
+    margin: 0 20px;
+    padding: 0 20px;
+}
+.inner-block{
+  display: flex;
+  align-items: flex-start;
+      border: 1px solid;
+}
+.inner-block img{
+  width: 50px;
+  padding-right: 10px;
+}  
+  
+</style>
+
+{% schema %}
+  {
+    "name": "Custom Content Blocks",
+    "settings": [],
+    "blocks":[
+      {
+        "type":"content",
+        "name":"content",
+        "settings":[
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Upload image"
+          },
+          {
+            "type":"text",
+            "id":"title",
+            "label":"title"
+          },
+          {
+            "type":"textarea",
+            "id":"content",
+            "label":"content"
+          }
+        ]    
+     }      
+  ],
+     "presets": [
+    {
+      "name": "Content blocks"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

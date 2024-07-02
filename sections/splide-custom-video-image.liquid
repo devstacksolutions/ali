@@ -1,0 +1,338 @@
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+
+<style>
+.image-with-text-video-slider-main video{
+      object-fit: cover;
+      object-position: center;
+  }
+.image-with-text-video-slider-main .splide__arrow{
+      background: #39010f;
+      /* left: auto; */
+      border: 1px solid #de0037;
+      border-radius: unset;
+      width: 46px;
+      height: 46px;
+}
+.splide__arrow svg{
+      fill: white !Important;
+}
+.image-with-text-video-slider-main img{
+      width: 100%
+}
+   
+    /* For Mobile */
+@media screen and (max-width: 767px) {
+.image-with-text-video-slider-main .fixedheight{
+   height: {{ section.settings.mob-height }}px
+  }
+.image-with-text-video-slider-main .fixedheight video,
+.image-with-text-video-slider-main .fixedheight img{
+    height: {{ section.settings.mob-height }}px
+  }     
+  .image-with-text-video-slider-main .mobilevideo{
+         display: block;
+  }
+  .image-with-text-video-slider-main .desktopvideourl,
+  .image-with-text-video-slider-main .desktopimg{
+         display: none;
+  }
+  .image-with-text-video-slider-main .mobileimg,
+  .image-with-text-video-slider-main .other-video{
+         display: block;
+         margin: 0 15px;
+  }
+  .image-with-text-video-slider-main .splide__arrow{
+          background: #39010f;
+          border: 1px solid #de0037;
+          border-radius: unset;
+          width: 30px;
+          height: 30px;
+  }
+  .image-with-text-video-slider-main .splide__arrow--prev{
+        left: 20px
+  }
+  .image-with-text-video-slider-main .splide__arrow--next{
+        right: 20px
+      }
+  }
+ /* For Desktop  */
+  @media screen and (min-width: 768px) {
+.image-with-text-video-slider-main .fixedheight{
+   height: {{ section.settings.desktop-height }}px
+  }
+.image-with-text-video-slider-main .fixedheight video,
+.image-with-text-video-slider-main .fixedheight img{
+    height: {{ section.settings.desktop-height }}px
+  } 
+  .image-with-text-video-slider-main .splide__arrow{
+          background: #39010f;
+          /* left: auto; */
+          border: 1px solid #de0037;
+          border-radius: unset;
+          width: 46px;
+          height: 46px;
+  }
+  .image-with-text-video-slider-main .mobilevideourl,
+  .image-with-text-video-slider-main .mobileimg{
+        display: none
+  }
+  .image-with-text-video-slider-main .desktopimg{
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+  }
+  .image-with-text-video-slider-main .img-captions{
+         position: absolute;
+  }
+  .image-with-text-video-slider-main .img-captions .h2cap{
+         font-size: 76px;
+      /* line-height: 76px; */
+          font-weight: 700;
+          line-height: 1em;
+          text-transform: uppercase;
+          color: #de0037;
+          margin-bottom: -2px;
+  }
+  .image-with-text-video-slider-main .img-captions .h3cap{
+          font-size: 46px;
+          /* line-height: 46px; */
+          font-weight: 700;
+          margin-bottom: 5px;
+          line-height: 1em;
+          text-transform: uppercase;
+          color: #fff;
+  }
+  .image-with-text-video-slider-main .img-captions .h4cap{
+        font-size: 14px;
+        color: #777;
+        line-height: 1em;
+        text-transform: uppercase;
+   }
+  }  
+</style>
+<section class="splide main-container {% if section.settings.heightfixed %}fixedheight{% endif %}" aria-label="Splide Basic HTML Example">
+  <div class="splide__track">
+    <ul class="splide__list">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'video' %}
+            <div class="splide__slide custom-video" {{ block.shopify_attributes }}>
+              {%- if block.settings.youtube_vimeo_video == blank -%}
+                <div class="other-video">
+                  <video
+                    class="desktopvideourl"
+                    type="video/mp4"
+                    width="100%"
+                    height=""
+                    data-loop="{{ block.settings.loop | json }}"
+                    controls
+                    muted
+                    playsinline
+                    data-autoplay
+                    autoplay="autoplay"
+                    preload=""
+                  >
+                    <source src="{{ block.settings.videourl }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+
+                  <video
+                    class="mobilevideourl"
+                    type="video/mp4"
+                    width="100%"
+                    loop=""
+                    height=""
+                    muted
+                    playsinline
+                    data-autoplay
+                    autoplay="autoplay"
+                    preload=""
+                  >
+                    <source src="{% if block.settings.mob_videourl %} {{ block.settings.mob_videourl }} {% else %} {{ block.settings.videourl }} {% endif %} " type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              {%- else -%}
+                {%- if block.settings.youtube_vimeo_video.type == 'youtube' -%}
+                  <iframe
+                    src="//www.youtube.com/embed/{{ block.settings.youtube_vimeo_video.id }}?rel=0&showinfo=0&vq=720"
+                    width="50%"
+                    height="480"
+                    frameborder="0"
+                    allowfullscreen
+                  ></iframe>
+                {%- endif -%}
+                {%- if block.settings.youtube_vimeo_video.type == 'vimeo' -%}
+                  <iframe
+                    src="//player.vimeo.com/video/{{ block.settings.youtube_vimeo_video.id }}?color={{ block.color_button | remove: "#" }}&byline=0&portrait=0&badge=0"
+                    width="850"
+                    height="480"
+                    frameborder="0"
+                    allowfullscreen
+                  ></iframe>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+
+          {% when 'image' %}
+            <div class="splide__slide custom-image" {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.imgurl }}">
+                <div class="desktopimg">
+                  <!-- <img src="{{ block.settings.image | img_url : 'master' }}"> -->
+                   {{ block.settings.image | image_url: width: nil | image_tag: width: nil }}
+                  <div class="img-captions">
+                    <h2 class="h2cap">{{ block.settings.text1 }}</h2>
+                    <h3 class="h3cap">{{ block.settings.text2 }}</h3>
+                    <h4 class="h4cap">{{ block.settings.text3 }}</h4>
+                  </div>
+                </div>
+
+                <div class="mobileimg">
+                  {% if block.settings.mobimage %}
+                    <img src="{{ block.settings.mobimage | img_url : 'master' }}">
+                  {% else %}
+                    <img src="{{ block.settings.image | img_url : 'master' }}">
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<script>
+    var splide = new Splide( '.splide', {
+    type   : 'loop',
+    pagination: boolean = false
+
+  } );
+  splide.mount();
+</script>
+{% schema %}
+{
+  "name": "custom-VideoImage-slider",
+  "class": "image-with-text-video-slider-main",
+  "settings": [
+    {
+      "type": "header",
+      "content": "section settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "heightfixed",
+      "label": "Fix height on/off",
+      "default":false
+    },
+    {
+      "type": "range",
+      "id": "desktop-height",
+      "min": 400,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop Height of container",
+      "default": 400
+      },
+     {
+      "type": "range",
+      "id": "mob-height",
+      "min": 250,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Height of container",
+      "default": 250
+      }
+  ],
+  "blocks": [
+  {
+    "type": "video",
+    "name": "Video",
+    "settings": [
+      {
+    "type": "header",
+    "content": "*Note: Use one option for video display"
+  },
+  {
+    "type": "video_url",
+    "id": "youtube_vimeo_video",
+    "label": "YouTube or Vimeo links",
+    "accept": [
+      "youtube",
+      "vimeo"
+    ]
+  },
+
+    {
+      "type":"url",
+      "id":"videourl",
+      "label":"desktop video url"
+
+    },
+     {
+       "type":"url",
+       "id":"mob_videourl",
+       "label":"mobile video url",
+       "info": "*Note: if mobile video is empty then desktop video will be use"
+     }
+
+  ]
+  },
+  {
+    "type": "image",
+    "name": "Image",
+    "settings": [
+      {
+
+        "type": "image_picker",
+        "id": "image",
+        "label": "Desktop image"
+      },
+      {
+
+        "type": "image_picker",
+        "id": "mobimage",
+        "label": "Mobile image",
+        "info": "*Note: if mobile image is empty then desktop img will be use"
+      },
+      {
+        "type":"url",
+        "id":"imgurl",
+        "label":"Image URL"
+      },
+      {
+      "type": "text",
+      "id": "text1",
+      "label": "Caption text line #1"
+      },
+      {
+      "type": "text",
+      "id": "text2",
+      "label": "Caption text line #2"
+      },
+      {
+      "type": "text",
+      "id": "text3",
+      "label": "Caption text line #3"
+      }
+    ]
+  }
+],
+  "presets": [
+  {
+    "name": "custom-video-image-text-slider"
+  }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

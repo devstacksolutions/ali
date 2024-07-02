@@ -1,0 +1,126 @@
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "text_alignment": "center",
+            "color_scheme": "background-1",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0"
+      ],
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [
+        ".header .header__heading{display: none;}"
+      ],
+      "settings": {
+        "logo_position": "middle-left",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "background-1",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "infinity_marquee_V3GFPQ": {
+      "type": "infinity_marquee",
+      "disabled": true,
+      "settings": {
+        "text": "text one | text two  |  text three  |",
+        "text_url": "",
+        "headingtag": "h4",
+        "speed": 20,
+        "scrolling_pause": true,
+        "text_size": 100,
+        "text_color": "#ffffff",
+        "text_color_hover": "",
+        "background_color": "",
+        "background_color_hover": "",
+        "inner_padding": 0,
+        "outer_margin": 0,
+        "height_des": 40,
+        "height_mob": 30,
+        "custom_css": "",
+        "mobile_custom_css": "",
+        "override_theme_font": false,
+        "main_font": "sans-serif"
+      }
+    },
+    "infinity_marquee_blocks_ig8UxU": {
+      "type": "infinity_marquee_blocks",
+      "blocks": {
+        "text_THKUdp": {
+          "type": "text",
+          "settings": {
+            "text": "hello text one",
+            "text_url": ""
+          }
+        },
+        "text_9x4b4F": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_url": ""
+          }
+        },
+        "text_yhTELP": {
+          "type": "text",
+          "settings": {
+            "text": "text two",
+            "text_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_THKUdp",
+        "text_9x4b4F",
+        "text_yhTELP"
+      ],
+      "disabled": true,
+      "settings": {
+        "headingtag": "h4",
+        "speed": 450,
+        "scrolling_pause": true,
+        "text_size": 120,
+        "text_color": "#ffffff",
+        "text_color_hover": "",
+        "background_color": "",
+        "background_color_hover": "",
+        "inner_padding": 0,
+        "outer_margin": 0,
+        "height_des": 40,
+        "height_mob": 30,
+        "custom_css": "",
+        "mobile_custom_css": "",
+        "override_theme_font": false,
+        "main_font": "sans-serif"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "infinity_marquee_V3GFPQ",
+    "infinity_marquee_blocks_ig8UxU"
+  ]
+}
